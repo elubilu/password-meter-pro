@@ -1,7 +1,7 @@
 {
   "name": "password-meter-pro",
   "version": "1.0.3",
-  "description": "Will check password strength and output it",
+  "description": "It is inspired by pointing system of Password Entropy, in which the main purpose is to help the end-users to have stronger passwords. (Password entropy is a measurement of how unpredictable a password is.)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,17 @@
     "password",
     "checker"
   ],
-  "author": "Rasel Ahmed",
-  "license": "ISC,MIT"
+  "author": {
+    "name": "Rasel Ahmed",
+    "email": "raselahmed.lucse@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raselportfollio/password-meter-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raselportfollio/password-meter-pro/issues"
+  }
 }
+

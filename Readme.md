@@ -1,3 +1,7 @@
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/password-meter-pro.svg)](https://badge.fury.io/js/password-meter-pro)
+[![Downloads](https://img.shields.io/npm/dm/password-meter-pro.svg)](https://www.npmjs.com/package/password-meter-pro)
+
 # Password Meter Pro
 
 "Password Meter Pro" is inspired by pointing system of Password Entropy, in which the main purpose is to help the end-users to have stronger passwords. (Password entropy is a measurement of how unpredictable a password is.)
@@ -13,7 +17,7 @@ npm i password-meter-pro
 
 ## Usage
 
-```nodejs
+```javascript
 let app = require("password-meter-pro");
 
 
@@ -37,4 +41,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update the tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/raselportfollio/password-meter-pro/blob/master/LICENSE)
