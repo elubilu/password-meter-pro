@@ -1,56 +1,123 @@
-module.exports = {
+const weight = {
+    SMALL_LETTER : 26,
+    CAPITAL_LETTER : 26,
+    NUMERIC: 10,
+    SPECIAL_CHAR: 33
+};
 
-    passwordStrength: function (pass) {
-        let tsml = 0;
-        let tcap = 0;
-        let tnum = 0;
-        let tsp = 0;
+var messages = {
+    VERY_WEAK: "Very Weak",
+    WEAK: "Weak",
+    GOOD: "Good",
+    STRONG: "Strong",
+    VERY_STRONG: "Very Strong"
+};
+
+var configs = {
+    SMALL_LETTER : {
+        min: 0,
+        max: 26
+    },
+    CAPITAL_LETTER : {
+        min: 0,
+        max: 26
+    },
+    NUMERIC: {
+        min: 0,
+        max: 255
+    },
+    SPECIAL_CHAR: {
+        min: 0,
+        max: 33
+    } 
+};
+
+module.exports = {
+    get weight() {
+        return weight;
+    },
+    config: function(config = {}) {
+        configs = Object.assign(configs, config);
+        return this;
+    },
+    get configs() {
+        return configs;
+    },
+    message: function(message = {}) {
+        messages = Object.assign(messages, message);
+        return this;
+    },
+    get messages() {
+        return messages;
+    },
+    password_strength: function (param, err, cb) {
+        let len = param.length; // Given string length
+        let weight = 0;
       
-       for(let i=0; i<pass.length; i++){
-            if(pass[i]>='a' && pass[i]<='z'){
-                tsml++;
-            }
-            else if(pass[i]>='A' && pass[i]<='Z'){
-                tcap++;
-            }
-            else if(pass[i]>='0' && pass[i]<='9'){
-                tnum++;
-            }
-            else  {
-                tsp++;
-            }
+        try {
+          weight = this._get_weight(param);
+        } catch (error) {
+          err(error);
+          return
         }
-        let S = 0;
-        if(tsml){
-            S += 26;
+      
+
+        let strength = Math.log2(Math.pow(weight, len));
+
+        if (strength < 28) {
+            cb(this.messages.VERY_WEAK, strength);
         }
-        if(tcap){
-            S += 26;
+        else if(strength < 36) {
+            cb(this.messages.WEAK, strength);
         }
-        if(tnum){
-            S+=10;
+        else if(strength < 60) {
+            cb(this.messages.GOOD, strength);
         }
-        if(tsp){
-            S+=33;
-        }
-        let L = pass.length;
-        let val = Math.pow(S,L);
-        let res = Math.log2(val);
-        if(res<28){
-            return "Very Weak";
-        }
-        else if(res<36){
-            return "Weak";
-        }
-        else if(res<60){
-            return "Good";
-        }
-        else if(res<128){
-            return "Strong";
+        else if(strength < 128) {
+            cb(this.messages.STRONG, strength);
         }
         else {
-            return "Very Strong"
+            cb(this.messages.VERY_STRONG, strength);
+        }
+        
+    },
+    _check_size(size_obj, size) {
+        return size_obj.min <= size && size_obj.max >= size; 
+    },
+    _get_weight: function (param) {
+        let weight = 0;
+        let capital_letter = param.match(/[A-Z]/g);
+        let small_letter = param.match(/[a-z]/g); 
+        let numeric = param.match(/[0-9]/g); 
+        let speicial_char = param.match(/[^a-zA-Z0-9]/g);
+        let valid_size = false;
+
+        if (capital_letter && (valid_size = this._check_size(this.configs.CAPITAL_LETTER, capital_letter.length))) {
+            weight += this.weight.CAPITAL_LETTER;
+        } else {
+            if (!valid_size) throw `Capital letter must be min: ${this.configs.CAPITAL_LETTER.min} and max: ${this.configs.CAPITAL_LETTER.max}`;
         }
 
+        if (small_letter && (valid_size = this._check_size(this.configs.SMALL_LETTER, small_letter.length))) {
+            weight += this.weight.SMALL_LETTER;
+        } else {
+            if (! valid_size) throw `Small letter must be min: ${this.configs.SMALL_LETTER.min} and max: ${this.configs.SMALL_LETTER.max}`;
+ 
+        }
+
+        if (numeric && (valid_size = this._check_size(this.configs.NUMERIC, numeric.length))) {
+            weight += this.weight.NUMERIC;
+        } else {
+            if (! valid_size) throw `Numeric letter must be min: ${this.configs.NUMERIC.min} and max: ${this.configs.NUMERIC.max}`;
+             
+        }
+
+        if (speicial_char && (valid_size = this._check_size(this.configs.SPECIAL_CHAR, speicial_char.length))) {
+            weight += this.weight.SPECIAL_CHAR;
+        } else {
+            if (! valid_size) throw `Special character must be min: ${this.configs.SPECIAL_CHAR.min} and max: ${this.configs.SPECIAL_CHAR.max}`;
+        }
+
+        return weight;
     }
 };
