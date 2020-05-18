@@ -17,22 +17,72 @@ npm i password-meter-pro
 
 ## Usage
 
+It's very easy configure on your application. just follow on below: 
+
 ```javascript
 let app = require("password-meter-pro");
 
 
-app.passwordStrength("####"); # returns 'Very Weak'
-app.passwordStrength("aaaa"); # returns 'Very Weak'
-app.passwordStrength("1111"); # returns 'Very Weak'
-app.passwordStrength("banglad"); # returns 'Weak'
-app.passwordStrength("bangla1"); # returns 'Good'
-app.passwordStrength("bangladesh"); # returns 'Good'
-app.passwordStrength("bangla1desh"); # returns 'Good'
-app.passwordStrength("Bangladesh"); # returns 'Good'
-app.passwordStrength("Bangla1desh"); # returns 'Strong'
-app.passwordStrength("Bangladesh#"); # returns 'Strong'
-app.passwordStrength("Bangla1desh#"); # returns 'Strong'
-app.passwordStrength("Hello71*Bangla1desh#"); # returns 'Very Strong'
+app.password_strength("####", function (message, strength) {
+    console.log(message) # returns 'Very Weak'
+});
+app.password_strength("aaaa", function (message, strength) {
+    console.log(message) # returns 'Very Weak'
+});
+app.password_strength("1111", function (message, strength) {
+    console.log(message) # returns 'Very Weak'
+});
+app.password_strength("banglad", function (message, strength) {
+    console.log(message) # returns 'Weak'
+});
+app.password_strength("bangla1", function (message, strength) {
+    console.log(message) # returns 'Good'
+});
+app.password_strength("bangladesh", function (message, strength) {
+    console.log(message) # returns 'Good'
+});
+app.password_strength("bangla1desh", function (message, strength) {
+    console.log(message) # returns 'Good'
+});
+app.password_strength("Bangla1desh", function (message, strength) {
+    console.log(message) # returns 'Strong'
+});
+app.password_strength("Bangladesh#", function (message, strength) {
+    console.log(message) # returns 'Strong'
+});
+app.password_strength("Bangla1desh#", function (message, strength) {
+    console.log(message) # returns 'Strong'
+});
+app.password_strength("Hello71*Bangla1desh#", function (message, strength) {
+    console.log(message) # returns 'Very Strong'
+});
+```
+There is some default messages, if you need to configure your own message like "Very week" instead of "You should use strong password", you can do easily here:
+
+```javascript
+// Example: default messages of package, don't need to re-assign variable again
+{
+    VERY_WEAK: "Very Weak",
+    WEAK: "Weak",
+    GOOD: "Good",
+    STRONG: "Strong",
+    VERY_STRONG: "Very Strong"
+};
+
+app.messages({
+    VERY_WEAK: "You should use strong password",
+});
+
+app.password_strength("####", function (message, strength) {
+    console.log(message) # returns 'You should use strong password'
+});
+//or
+app.messages({
+    VERY_WEAK: "You should use strong password",
+}).password_strength("####", function(message, strength) {
+    console.log(message) # returns 'You should use strong password'
+});
+
 ```
 
 ## Contributing

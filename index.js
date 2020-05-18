@@ -55,7 +55,7 @@ module.exports = {
     get messages() {
         return messages; // get messages
     },
-    password_strength: function (param, err, cb) {
+    password_strength: function (param, cb, err) {
         let len = param.length; // Given string length
         let weight = 0;
       
