@@ -22,40 +22,28 @@ It's very easy configure on your application. just follow on below:
 ```javascript
 let app = require("password-meter-pro");
 
+app.password_strength("1111") # return  message = "Very Weak" , strength = 14  , percentage = 11%
 
-app.password_strength("####", function (message, strength) {
-    console.log(message) # returns 'Very Weak'
-});
-app.password_strength("aaaa", function (message, strength) {
-    console.log(message) # returns 'Very Weak'
-});
-app.password_strength("1111", function (message, strength) {
-    console.log(message) # returns 'Very Weak'
-});
-app.password_strength("banglad", function (message, strength) {
-    console.log(message) # returns 'Weak'
-});
-app.password_strength("bangla1", function (message, strength) {
-    console.log(message) # returns 'Good'
-});
-app.password_strength("bangladesh", function (message, strength) {
-    console.log(message) # returns 'Good'
-});
-app.password_strength("bangla1desh", function (message, strength) {
-    console.log(message) # returns 'Good'
-});
-app.password_strength("Bangla1desh", function (message, strength) {
-    console.log(message) # returns 'Strong'
-});
-app.password_strength("Bangladesh#", function (message, strength) {
-    console.log(message) # returns 'Strong'
-});
-app.password_strength("Bangla1desh#", function (message, strength) {
-    console.log(message) # returns 'Strong'
-});
-app.password_strength("Hello71*Bangla1desh#", function (message, strength) {
-    console.log(message) # returns 'Very Strong'
-});
+app.password_strength("aaaa") # return  message = "Very Weak" , strength = 19 , percentage = 15%
+
+app.password_strength("####") # returns message = "Very Weak" , strength = 21 , percentage = 17%
+
+app.password_strength("banglad") # returns message = "Weak" , strength = 33  , percentage = 26%
+
+app.password_strength("bangla1") # returns message = "Good" , strength = 37  , percentage = 29%
+
+app.password_strength("bangladesh") # returns message = "Good" , strength = 48 , percentage = 38%
+
+app.password_strength("bangla1desh") # returns message = "Good" , strength = 57 , percentage = 45%
+
+app.password_strength("Bangla1desh") # returns message = "Strong", strength = 66, percentage = 52%
+
+app.password_strength("Bangladesh#") # returns message = "Strong", strength = 71, percentage = 56%
+
+app.password_strength("Bangla1desh#") # returns message = "Strong", strength = 79, percentage = 62%
+
+app.password_strength("Hello71*Bangla1desh#") # returns message = "Very Strong" , strength = 132  , percentage = 100%
+
 ```
 There are some default messages, if you need to configure your own message like "Very week" instead of "You should use strong password", you can do easily here:
 
@@ -76,15 +64,11 @@ app.message({
     VERY_WEAK: "You should use strong password",
 });
 
-app.password_strength("####", function (message, strength) {
-    console.log(message) # returns 'You should use strong password'
-});
+app.password_strength("####") # returns 'You should use strong password'
 //or
 app.message({
     VERY_WEAK: "You should use strong password",
-}).password_strength("####", function(message, strength) {
-    console.log(message) # returns 'You should use strong password'
-});
+}).password_strength("####") # returns 'You should use strong password'
 
 ```
 There are some default configs for checking validating items on password. if you want to customer that too, you can use "config"  method. 
@@ -121,22 +105,14 @@ app.config({
     },
 });
 
-app.password_strength("####", function (message, strength) {
-    console.log(message)
-}, function(err) {
-    console.log(err) # returns 'Numeric letter must be min: 2 and max: 6'
-});
+app.password_strength("####") # returns 'Numeric letter must be min: 2 and max: 6'
 //or
 app.config({
     NUMERIC: {
         min: 2,
         max: 6
     }
-}).password_strength("####", function(message, strength) {
-    console.log(message) # returns 'You should use strong password'
-},function(err) {
-    console.log(err) # returns 'Numeric letter must be min: 2 and max: 6'
-});
+}).password_strength("####") # returns 'Numeric letter must be min: 2 and max: 6'
 ```
 
 ## Contributing
