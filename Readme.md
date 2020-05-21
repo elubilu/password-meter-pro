@@ -8,7 +8,7 @@
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/package/password-meter-pro) to install [npm](https://www.npmjs.com/package/password-meter-pro).
+Use the package manager [npm](https://www.npmjs.com/package/password-meter-pro) to install [Password Meter Pro](https://www.npmjs.com/package/password-meter-pro).
 
 ```bash
 npm i password-meter-pro
