@@ -45,7 +45,7 @@ app.password_strength("Bangla1desh#") # returns message = "Strong", strength = 7
 app.password_strength("Hello71*Bangla1desh#") # returns message = "Very Strong" , strength = 132  , percentage = 100%
 
 ```
-There are some default messages, if you need to configure your own message like "Very week" instead of "You should use strong password", you can do easily here:
+There are some default messages, if you need to configure your own message like "This Password is Very Weak" instead of "You should use strong password", you can do easily here:
 
 ```javascript
 // Example: default messages of package, 
