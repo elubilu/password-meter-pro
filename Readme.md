@@ -17,7 +17,7 @@ npm i password-meter-pro
 
 ## Usage
 
-It's very easy configure on your application. just follow on below: 
+It's very easy to configure on your application. Just follow on below: 
 
 ```javascript
 let app = require("password-meter-pro");
@@ -45,10 +45,10 @@ app.password_strength("Bangla1desh#") # returns message = "Strong", strength = 7
 app.password_strength("Hello71*Bangla1desh#") # returns message = "Very Strong" , strength = 132  , percentage = 100%
 
 ```
-There are some default messages, if you need to configure your own message like "This Password is Very Weak" instead of "You should use strong password", you can do easily here:
+There are some default messages. If you need to configure your own message like "This Password is Very Weak" instead of "You should use strong password", you can do it easily here:
 
 ```javascript
-// Example: default messages of package, 
+// Example: default messages of the package, 
 {
     VERY_WEAK: "Very Weak",
     WEAK: "Weak",
@@ -57,7 +57,7 @@ There are some default messages, if you need to configure your own message like 
     VERY_STRONG: "Very Strong"
 }
 ```
-You can override these message by using "message" method:
+You can override these messages by using the "message" method:
 
 ```javascript
 app.message({
@@ -71,7 +71,7 @@ app.message({
 }).password_strength("####") # returns 'You should use strong password'
 
 ```
-There are some default configs for checking validating items on password. if you want to customer that too, you can use "config"  method. 
+There are some default configurations for checking and validating items in the password. You can use the "config" method if you want to customise that too. 
 
 ```javascript
 // Default configs
@@ -98,7 +98,7 @@ You can override these configs:
 
 ```javascript
 app.config({
-    // always checking length of given item of each type
+    // always checking the length of the given item of each type
     NUMERIC: {
         min: 2,
         max: 6
